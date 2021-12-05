@@ -1,0 +1,7 @@
+.List {
+}
+
+.Item {
+  display: flex;
+  align-items: center;
+}
