@@ -1,16 +1,20 @@
-import { Component } from 'react';
+import React from 'react';
+// import styles from './Filter.module.css';
 
-class Filter extends Component {
-  render() {
-    return (
-      <div>
-        <h2>Filter</h2>
-        <ul>
-          <li></li>
-        </ul>
-      </div>
-    );
-  }
-}
+const Filter = ({ contactName, onFindContact }) => {
+  return (
+    <label htmlFor="">
+      Find contacts by name
+      <input
+        // type="input"
+        // name=""
+        // pattern=""
+        // title=""
+        value={contactName}
+        onChange={onFindContact}
+      />
+    </label>
+  );
+};
 
 export default Filter;
