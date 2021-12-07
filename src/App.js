@@ -14,18 +14,11 @@ class App extends Component {
   };
 
   addContact = ({ name, number }) => {
-    let newContact = {};
-
-    this.state.contacts.map(contact =>
-      contact.name === name
-        ? (alert(`${name} is already in contacts`),
-          this.deleteContact(contact.id))
-        : (newContact = { name, number, id: nanoid() }),
-    );
-
-    this.setState(({ contacts }) => ({
-      contacts: [...contacts, newContact],
-    }));
+    this.state.contacts.find(contact => name === contact.name)
+      ? alert(`${name} is already in contacts`)
+      : this.setState(({ contacts }) => ({
+          contacts: [...contacts, { name, number, id: nanoid() }],
+        }));
   };
 
   deleteContact = contactId => {
