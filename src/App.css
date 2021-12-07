@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.Title {
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -36,8 +41,3 @@
     transform: rotate(360deg);
   }
 } */
-
-.Title {
-  margin-bottom: 15px;
-  margin-top: 0;
-}
