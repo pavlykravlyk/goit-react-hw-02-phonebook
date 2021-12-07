@@ -14,15 +14,18 @@ class App extends Component {
   };
 
   addContact = ({ name, number }) => {
-    const newContact = { name, number, id: nanoid() };
+    let newContact = {};
+
+    this.state.contacts.map(contact =>
+      contact.name === name
+        ? (alert(`${name} is already in contacts`),
+          this.deleteContact(contact.id))
+        : (newContact = { name, number, id: nanoid() }),
+    );
 
     this.setState(({ contacts }) => ({
       contacts: [...contacts, newContact],
     }));
-
-    if (newContact.name === this.state.contacts.name) {
-      console.log('2424234');
-    }
   };
 
   deleteContact = contactId => {
@@ -54,10 +57,10 @@ class App extends Component {
     return (
       <main className="App">
         <Container>
-          <h1>Phonebook</h1>
+          <h1 className="Title">Phonebook</h1>
           <ContactForm onAddContact={addContact} />
 
-          <h2>Contacts</h2>
+          <h2 className="Title">Contacts</h2>
           <Filter contactName={filter} onFindContact={findContactsByName} />
           <ContactList
             contacts={filterContactList()}

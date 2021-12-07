@@ -1,15 +1,13 @@
 import React from 'react';
-// import styles from './Filter.module.css';
+import styles from './Filter.module.css';
 
 const Filter = ({ contactName, onFindContact }) => {
   return (
-    <label htmlFor="">
+    <label className={styles.Label} htmlFor="">
       Find contacts by name
       <input
-        // type="input"
-        // name=""
-        // pattern=""
-        // title=""
+        className={styles.Input}
+        type="text"
         value={contactName}
         onChange={onFindContact}
       />

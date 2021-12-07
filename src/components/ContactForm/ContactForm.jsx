@@ -1,6 +1,23 @@
 import { Component } from 'react';
 import styles from './ContactForm.module.css';
 
+// const FORM_CONFIG = [
+//   {
+//     type: 'text',
+//     name: 'name',
+//     pattern: "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
+//     title:
+//       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan",
+//   },
+//   {
+//     type: 'tel',
+//     name: 'number',
+//     pattern: '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
+//     title:
+//       'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +',
+//   },
+// ];
+
 class Phonebook extends Component {
   state = {
     name: '',
@@ -28,9 +45,10 @@ class Phonebook extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className={styles.Form}>
-        <label htmlFor="">
+        <label htmlFor="" className={styles.Label}>
           Name
           <input
+            className={styles.Input}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -40,9 +58,10 @@ class Phonebook extends Component {
             onChange={this.handleChange}
           />
         </label>
-        <label htmlFor="">
+        <label htmlFor="" className={styles.Label}>
           Number
           <input
+            className={styles.Input}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -53,7 +72,7 @@ class Phonebook extends Component {
         </label>
 
         <button type="submit" className={styles.Btn}>
-          Add contact
+          add contact
         </button>
       </form>
     );
