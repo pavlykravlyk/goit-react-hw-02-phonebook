@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import './App.css';
 import Container from './components/Container/Container';
+import Section from './components/Section/Section';
 import ContactList from './components/ContactList/ContactList';
 import ContactForm from 'components/ContactForm/ContactForm';
 import Filter from './components/Filter/Filter';
@@ -50,15 +51,18 @@ class App extends Component {
     return (
       <main className="App">
         <Container>
-          <h1 className="Title">Phonebook</h1>
-          <ContactForm onAddContact={addContact} />
-
-          <h2 className="Title">Contacts</h2>
-          <Filter contactName={filter} onFindContact={findContactsByName} />
-          <ContactList
-            contacts={filterContactList()}
-            onDeleteContact={deleteContact}
-          />
+          <Section>
+            <h1 className="Title">Phonebook</h1>
+            <ContactForm onAddContact={addContact} />
+          </Section>
+          <Section>
+            <h2 className="Title">Contacts</h2>
+            <Filter contactName={filter} onFindContact={findContactsByName} />
+            <ContactList
+              contacts={filterContactList()}
+              onDeleteContact={deleteContact}
+            />
+          </Section>
         </Container>
       </main>
     );
