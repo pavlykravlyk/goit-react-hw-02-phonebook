@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Filter.module.css';
 
 const Filter = ({ contactName, onFindContact }) => {
@@ -13,6 +14,11 @@ const Filter = ({ contactName, onFindContact }) => {
       />
     </label>
   );
+};
+
+Filter.propTypes = {
+  contactName: PropTypes.string.isRequired,
+  onFindContact: PropTypes.func.isRequired,
 };
 
 export default Filter;
