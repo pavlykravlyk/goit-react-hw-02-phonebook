@@ -14,7 +14,7 @@ class App extends Component {
   };
 
   addContact = ({ name, number }) => {
-    this.state.contacts.find(contact => name === contact.name)
+    this.state.contacts.some(contact => name === contact.name)
       ? alert(`${name} is already in contacts`)
       : this.setState(({ contacts }) => ({
           contacts: [...contacts, { name, number, id: nanoid() }],
