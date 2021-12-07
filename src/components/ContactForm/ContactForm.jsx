@@ -1,28 +1,15 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
+import FORM_CONFIG from 'formConfig';
 import styles from './ContactForm.module.css';
 
-// const FORM_CONFIG = [
-//   {
-//     type: 'text',
-//     name: 'name',
-//     pattern: "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
-//     title:
-//       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan",
-//   },
-//   {
-//     type: 'tel',
-//     name: 'number',
-//     pattern: '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
-//     title:
-//       'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +',
-//   },
-// ];
-
-class Phonebook extends Component {
-  state = {
-    name: '',
-    number: '',
+export default class Phonebook extends Component {
+  static propTypes = {
+    name: PropTypes.string,
+    number: PropTypes.string,
   };
+
+  state = { name: '', number: '' };
 
   handleChange = event => {
     const { name, value } = event.currentTarget;
@@ -32,44 +19,31 @@ class Phonebook extends Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.onAddContact(this.state);
-    this.resetState();
-  };
-
-  resetState = () => {
-    this.setState({
-      name: '',
-      number: '',
-    });
+    this.setState({ name: '', number: '' });
   };
 
   render() {
     return (
       <form onSubmit={this.handleSubmit} className={styles.Form}>
-        <label htmlFor="" className={styles.Label}>
-          Name
-          <input
-            className={styles.Input}
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label htmlFor="" className={styles.Label}>
-          Number
-          <input
-            className={styles.Input}
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            value={this.state.number}
-            onChange={this.handleChange}
-          />
-        </label>
+        <ul className={styles.List}>
+          {FORM_CONFIG.map(({ type, name, pattern, title }) => (
+            <li key={name} className={styles.Item}>
+              <label className={styles.Label}>
+                {name}
+                <input
+                  className={styles.Input}
+                  type={type}
+                  name={name}
+                  pattern={pattern}
+                  title={title}
+                  value={this.state[name]}
+                  onChange={this.handleChange}
+                  required
+                />
+              </label>
+            </li>
+          ))}
+        </ul>
 
         <button type="submit" className={styles.Btn}>
           add contact
@@ -79,4 +53,9 @@ class Phonebook extends Component {
   }
 }
 
-export default Phonebook;
+FORM_CONFIG.PropTypes = {
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  pattern: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
